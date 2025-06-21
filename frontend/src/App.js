@@ -2643,6 +2643,7 @@ const App = () => {
         <Route path="/" element={<MainContent />} />
         <Route path="/blog" element={<BlogList />} />
         <Route path="/article/:id" element={<Article />} />
+        <Route path="/security-report" element={<SecurityReport />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/impressum" element={<Impressum />} />
