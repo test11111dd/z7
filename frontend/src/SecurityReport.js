@@ -406,7 +406,12 @@ const SecurityReport = () => {
             <button 
               onClick={() => {
                 navigate('/');
-                setTimeout(() => window.scrollTo(0, 0), 100);
+                setTimeout(() => {
+                  const calculatorElement = document.getElementById('calculator');
+                  if (calculatorElement) {
+                    calculatorElement.scrollIntoView({ behavior: 'instant' });
+                  }
+                }, 50);
               }}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
             >
