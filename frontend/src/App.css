@@ -209,6 +209,33 @@ html {
   }
 }
 
+/* Security incidents horizontal scroll - Mobile adjustments */
+@media (max-width: 640px) {
+  /* Reduce card width on mobile */
+  .security-card-mobile {
+    width: 280px !important;
+    min-width: 280px;
+  }
+  
+  /* Adjust padding for mobile cards */
+  .security-card-mobile .card-content {
+    padding: 1rem;
+  }
+  
+  /* Better spacing for mobile horizontal scroll */
+  .security-scroll-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .security-card-mobile {
+    width: 260px !important;
+    min-width: 260px;
+  }
+}
+
 /* Loading spinner */
 .spinner {
   width: 24px;
