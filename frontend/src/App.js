@@ -1240,22 +1240,22 @@ const MainContent = () => {
             <div className="relative">
               {/* Horizontal scroll container */}
               <div 
-                className="overflow-x-auto scrollbar-hide pb-4"
+                className="overflow-x-auto scrollbar-hide pb-4 security-scroll-container"
                 style={{
                   scrollbarWidth: 'none', /* Firefox */
                   msOverflowStyle: 'none',  /* Internet Explorer 10+ */
                 }}
               >
                 {/* Flex container for horizontal cards */}
-                <div className="flex space-x-6 w-max">
+                <div className="flex space-x-4 sm:space-x-6 w-max pl-4 sm:pl-0">
                   {scamAlerts.map((alert, index) => (
                     <div 
                       key={index} 
-                      className={`bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 border hover:border-red-500/50 transition-all duration-300 hover:transform hover:scale-105 fade-in flex-shrink-0 w-80 sm:w-96`} 
+                      className={`bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 sm:p-6 border hover:border-red-500/50 transition-all duration-300 hover:transform hover:scale-105 fade-in flex-shrink-0 w-72 sm:w-80 lg:w-96 security-card-mobile`} 
                       style={{animationDelay: `${index * 0.1}s`}}
                     >
                       <div className="flex items-start justify-between mb-4">
-                        <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
+                        <div className={`inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs font-semibold ${
                           alert.severity === 'high' ? 'bg-red-600/20 text-red-300 border border-red-500/30' : 
                           alert.severity === 'medium' ? 'bg-yellow-600/20 text-yellow-300 border border-yellow-500/30' : 
                           'bg-green-600/20 text-green-300 border border-green-500/30'
@@ -1267,12 +1267,12 @@ const MainContent = () => {
                           {alert.severity.toUpperCase()} RISK
                         </div>
                         <div className="text-right">
-                          <div className="text-red-300 font-bold text-lg">{alert.amount_lost}</div>
+                          <div className="text-red-300 font-bold text-sm sm:text-lg">{alert.amount_lost}</div>
                           <div className="text-blue-400 text-xs">{alert.source}</div>
                         </div>
                       </div>
                       
-                      <h3 className="text-white font-bold text-lg mb-3 line-clamp-2">{alert.title}</h3>
+                      <h3 className="text-white font-bold text-base sm:text-lg mb-3 line-clamp-2">{alert.title}</h3>
                       <p className="text-blue-200 text-sm mb-4 line-clamp-3">{alert.description}</p>
                       
                       <a 
