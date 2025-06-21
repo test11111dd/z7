@@ -9,6 +9,11 @@ const SecurityReport = () => {
     day: 'numeric' 
   }));
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Comprehensive 2025 crypto incident data
   const incidentData = {
     totalLosses2025: 2.8, // in billions
