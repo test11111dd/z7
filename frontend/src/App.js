@@ -672,6 +672,20 @@ const MainContent = () => {
   // Scam alerts state
   const [scamAlerts, setScamAlerts] = useState([]);
   const [alertsLoading, setAlertsLoading] = useState(true);
+  const [scrollContainer, setScrollContainer] = useState(null);
+
+  // Scroll functions for security incidents
+  const scrollLeft = () => {
+    if (scrollContainer) {
+      scrollContainer.scrollBy({ left: -400, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainer) {
+      scrollContainer.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  };
 
   // AI Chatbot state - Updated for new functionality
   const [showChatbot, setShowChatbot] = useState(false);
