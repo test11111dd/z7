@@ -405,13 +405,7 @@ const SecurityReport = () => {
           <div className="flex justify-center space-x-6">
             <button 
               onClick={() => {
-                navigate('/');
-                setTimeout(() => {
-                  const calculatorElement = document.getElementById('calculator');
-                  if (calculatorElement) {
-                    calculatorElement.scrollIntoView({ behavior: 'instant' });
-                  }
-                }, 50);
+                navigate('/#calculator');
               }}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
             >
