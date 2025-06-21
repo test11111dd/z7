@@ -404,7 +404,10 @@ const SecurityReport = () => {
           </p>
           <div className="flex justify-center space-x-6">
             <button 
-              onClick={() => navigate('/')}
+              onClick={() => {
+                navigate('/');
+                setTimeout(() => window.scrollTo(0, 0), 100);
+              }}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
             >
               Get Protected with BitSafe
