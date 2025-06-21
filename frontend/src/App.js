@@ -1388,8 +1388,8 @@ const MainContent = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                 <button 
                   onClick={() => {
+                    window.scrollTo({top: 0, behavior: 'instant'});
                     navigate('/security-report');
-                    setTimeout(() => window.scrollTo(0, 0), 100);
                   }}
                   className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center space-x-2"
                 >
