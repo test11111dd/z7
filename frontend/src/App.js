@@ -1305,14 +1305,22 @@ const MainContent = () => {
             </div>
           )}
           
-          {!alertsLoading && scamAlerts.length > 6 && (
+          {!alertsLoading && scamAlerts.length > 0 && (
             <div className="text-center mt-12 fade-in">
               <p className="text-blue-300 mb-4">
-                {scamAlerts.length - 6} more recent incidents tracked by our AI monitoring system
+                Showing {scamAlerts.length} recent incidents tracked by our AI monitoring system
               </p>
-              <button className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105">
-                View All Security Alerts
-              </button>
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+                <button className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105">
+                  View Detailed Security Report
+                </button>
+                <div className="text-blue-400 text-sm flex items-center">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Updated every 2 minutes
+                </div>
+              </div>
             </div>
           )}
         </div>
