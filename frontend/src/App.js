@@ -1240,65 +1240,102 @@ const MainContent = () => {
             <div className="relative">
               {/* Horizontal scroll container */}
               <div 
-                className="overflow-x-auto scrollbar-hide pb-4 security-scroll-container"
+                className="overflow-x-auto scrollbar-hide pb-6"
                 style={{
-                  scrollbarWidth: 'none', /* Firefox */
-                  msOverflowStyle: 'none',  /* Internet Explorer 10+ */
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
                 }}
               >
                 {/* Flex container for horizontal cards */}
-                <div className="flex space-x-4 sm:space-x-6 w-max pl-4 sm:pl-0">
+                <div className="flex space-x-6 w-max pl-4 sm:pl-0 pr-4">
                   {scamAlerts.map((alert, index) => (
                     <div 
                       key={index} 
-                      className={`bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 sm:p-6 border hover:border-red-500/50 transition-all duration-300 hover:transform hover:scale-105 fade-in flex-shrink-0 w-72 sm:w-80 lg:w-96 security-card-mobile`} 
+                      className="group bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 hover:border-red-500/70 transition-all duration-500 hover:transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-500/20 fade-in flex-shrink-0 w-80 sm:w-96 cursor-pointer" 
                       style={{animationDelay: `${index * 0.1}s`}}
+                      onClick={() => window.open(alert.link, '_blank')}
                     >
-                      <div className="flex items-start justify-between mb-4">
-                        <div className={`inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs font-semibold ${
-                          alert.severity === 'high' ? 'bg-red-600/20 text-red-300 border border-red-500/30' : 
-                          alert.severity === 'medium' ? 'bg-yellow-600/20 text-yellow-300 border border-yellow-500/30' : 
-                          'bg-green-600/20 text-green-300 border border-green-500/30'
+                      {/* Header with severity and amount */}
+                      <div className="flex items-start justify-between mb-5">
+                        <div className={`inline-flex items-center px-3 py-2 rounded-full text-xs font-bold shadow-lg ${
+                          alert.severity === 'high' ? 'bg-gradient-to-r from-red-600 to-red-700 text-white animate-pulse' : 
+                          alert.severity === 'medium' ? 'bg-gradient-to-r from-yellow-600 to-orange-600 text-white' : 
+                          'bg-gradient-to-r from-green-600 to-emerald-600 text-white'
                         }`}>
-                          <span className={`w-2 h-2 rounded-full mr-2 ${
-                            alert.severity === 'high' ? 'bg-red-400' : 
-                            alert.severity === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
+                          <span className={`w-2 h-2 rounded-full mr-2 animate-ping ${
+                            alert.severity === 'high' ? 'bg-red-200' : 
+                            alert.severity === 'medium' ? 'bg-yellow-200' : 'bg-green-200'
                           }`}></span>
                           {alert.severity.toUpperCase()} RISK
                         </div>
                         <div className="text-right">
-                          <div className="text-red-300 font-bold text-sm sm:text-lg">{alert.amount_lost}</div>
-                          <div className="text-blue-400 text-xs">{alert.source}</div>
+                          <div className="text-red-300 font-black text-xl bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+                            {alert.amount_lost}
+                          </div>
+                          <div className="text-blue-400 text-xs font-semibold uppercase tracking-wider">{alert.source}</div>
                         </div>
                       </div>
                       
-                      <h3 className="text-white font-bold text-base sm:text-lg mb-3 line-clamp-2">{alert.title}</h3>
-                      <p className="text-blue-200 text-sm mb-4 line-clamp-3">{alert.description}</p>
+                      {/* Title */}
+                      <h3 className="text-white font-bold text-lg mb-4 line-clamp-2 group-hover:text-blue-300 transition-colors duration-300">
+                        {alert.title}
+                      </h3>
                       
-                      <a 
-                        href={alert.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group"
-                      >
-                        Read Full Report
-                        <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
+                      {/* Description */}
+                      <p className="text-slate-300 text-sm mb-6 line-clamp-3 leading-relaxed">
+                        {alert.description}
+                      </p>
+                      
+                      {/* Action button */}
+                      <div className="flex items-center justify-between">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(alert.link, '_blank');
+                          }}
+                          className="inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 group"
+                        >
+                          Read Report
+                          <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </button>
+                        
+                        <div className="text-xs text-slate-400">
+                          <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          Live
+                        </div>
+                      </div>
+                      
+                      {/* Hover overlay effect */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-red-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                     </div>
                   ))}
                 </div>
               </div>
               
-              {/* Scroll indicators */}
+              {/* Enhanced scroll indicators */}
               {scamAlerts.length > 3 && (
-                <div className="flex justify-center mt-6 space-x-2">
-                  <div className="flex items-center text-blue-300 text-sm">
-                    <svg className="w-4 h-4 mr-2 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex flex-col items-center mt-8 space-y-3">
+                  <div className="flex items-center text-blue-300 text-sm font-semibold bg-slate-800/50 px-4 py-2 rounded-full border border-blue-500/30">
+                    <svg className="w-5 h-5 mr-2 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                    Scroll horizontally to see more incidents →
+                    Scroll to explore {scamAlerts.length} security incidents
+                  </div>
+                  
+                  {/* Scroll dots indicator */}
+                  <div className="flex space-x-2">
+                    {Array.from({ length: Math.min(scamAlerts.length, 8) }).map((_, i) => (
+                      <div 
+                        key={i} 
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          i < 3 ? 'bg-blue-500' : 'bg-slate-600'
+                        }`}
+                      ></div>
+                    ))}
                   </div>
                 </div>
               )}
