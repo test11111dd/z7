@@ -1237,43 +1237,71 @@ const MainContent = () => {
               </div>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {scamAlerts.slice(0, 6).map((alert, index) => (
-                <div key={index} className={`bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 border hover:border-red-500/50 transition-all duration-300 hover:transform hover:scale-105 fade-in`} style={{animationDelay: `${index * 0.1}s`}}>
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
-                      alert.severity === 'high' ? 'bg-red-600/20 text-red-300 border border-red-500/30' : 
-                      alert.severity === 'medium' ? 'bg-yellow-600/20 text-yellow-300 border border-yellow-500/30' : 
-                      'bg-green-600/20 text-green-300 border border-green-500/30'
-                    }`}>
-                      <span className={`w-2 h-2 rounded-full mr-2 ${
-                        alert.severity === 'high' ? 'bg-red-400' : 
-                        alert.severity === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
-                      }`}></span>
-                      {alert.severity.toUpperCase()} RISK
+            <div className="relative">
+              {/* Horizontal scroll container */}
+              <div 
+                className="overflow-x-auto scrollbar-hide pb-4"
+                style={{
+                  scrollbarWidth: 'none', /* Firefox */
+                  msOverflowStyle: 'none',  /* Internet Explorer 10+ */
+                }}
+              >
+                {/* Flex container for horizontal cards */}
+                <div className="flex space-x-6 w-max">
+                  {scamAlerts.map((alert, index) => (
+                    <div 
+                      key={index} 
+                      className={`bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 border hover:border-red-500/50 transition-all duration-300 hover:transform hover:scale-105 fade-in flex-shrink-0 w-80 sm:w-96`} 
+                      style={{animationDelay: `${index * 0.1}s`}}
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
+                          alert.severity === 'high' ? 'bg-red-600/20 text-red-300 border border-red-500/30' : 
+                          alert.severity === 'medium' ? 'bg-yellow-600/20 text-yellow-300 border border-yellow-500/30' : 
+                          'bg-green-600/20 text-green-300 border border-green-500/30'
+                        }`}>
+                          <span className={`w-2 h-2 rounded-full mr-2 ${
+                            alert.severity === 'high' ? 'bg-red-400' : 
+                            alert.severity === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
+                          }`}></span>
+                          {alert.severity.toUpperCase()} RISK
+                        </div>
+                        <div className="text-right">
+                          <div className="text-red-300 font-bold text-lg">{alert.amount_lost}</div>
+                          <div className="text-blue-400 text-xs">{alert.source}</div>
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-white font-bold text-lg mb-3 line-clamp-2">{alert.title}</h3>
+                      <p className="text-blue-200 text-sm mb-4 line-clamp-3">{alert.description}</p>
+                      
+                      <a 
+                        href={alert.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group"
+                      >
+                        Read Full Report
+                        <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
                     </div>
-                    <div className="text-right">
-                      <div className="text-red-300 font-bold text-lg">{alert.amount_lost}</div>
-                      <div className="text-blue-400 text-xs">{alert.source}</div>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-white font-bold text-lg mb-3 line-clamp-2">{alert.title}</h3>
-                  <p className="text-blue-200 text-sm mb-4 line-clamp-3">{alert.description}</p>
-                  
-                  <a 
-                    href={alert.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group"
-                  >
-                    Read Full Report
-                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
+                  ))}
                 </div>
-              ))}
+              </div>
+              
+              {/* Scroll indicators */}
+              {scamAlerts.length > 3 && (
+                <div className="flex justify-center mt-6 space-x-2">
+                  <div className="flex items-center text-blue-300 text-sm">
+                    <svg className="w-4 h-4 mr-2 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                    Scroll horizontally to see more incidents →
+                  </div>
+                </div>
+              )}
             </div>
           )}
           
