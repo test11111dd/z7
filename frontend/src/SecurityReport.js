@@ -11,7 +11,7 @@ const SecurityReport = () => {
 
   // Scroll to top when component mounts
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({top: 0, behavior: 'instant'});
   }, []);
 
   // Comprehensive 2025 crypto incident data
