@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
+import SecurityReport from './SecurityReport';
 import './App.css';
 
 // Blog articles data (10 articles)
