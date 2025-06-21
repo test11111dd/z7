@@ -1387,7 +1387,10 @@ const MainContent = () => {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
                 <button 
-                  onClick={() => navigate('/security-report')}
+                  onClick={() => {
+                    navigate('/security-report');
+                    setTimeout(() => window.scrollTo(0, 0), 100);
+                  }}
                   className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center space-x-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
